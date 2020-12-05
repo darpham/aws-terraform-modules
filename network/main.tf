@@ -1,6 +1,15 @@
-provider "aws" {
-  version = "2.64.0"
-  region  = var.region
+terraform {
+  # Live modules pin exact Terraform version; generic modules let consumers pin the version.
+  # The latest version of Terragrunt (v0.25.1 and above) recommends Terraform 0.13.3 or above.
+  required_version = "= 0.13.5"
+
+  # Live modules pin exact provider version; generic modules let consumers pin the version.
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "= 3.20.0"
+    }
+  }
 }
 
 // Module starter code: https://github.com/jafow/terraform-modules/tree/master/aws-blueprints/network
