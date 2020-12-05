@@ -71,10 +71,12 @@ variable db_major_version {
 // --------------------------
 variable db_instance_id_migration {
   description = "The database ID from which the new database will start using the latest snapshot"
+  default = "empty"
 }
 
 variable db_instance_region_migration {
   description = "The database ID from which the new database will start using the latest snapshot"
+  default = "empty"
 }
 
 variable db_snapshot_migration {
