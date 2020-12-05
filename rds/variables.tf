@@ -18,10 +18,12 @@ variable region {
 
 variable private_subnet_cidrs {
   description = "private subnet cidrs from where to place the RDS instance"
+  type = list(string)
 }
 
 variable private_subnet_ids {
   description = "private subnet ids from where to place the RDS instance"
+    type = list(string)
 }
 
 variable tags {

@@ -64,7 +64,7 @@ resource "aws_ecs_service" "svc" {
   }
 
   network_configuration {
-    subnets          = tolist(var.public_subnet_ids)
+    subnets          = var.public_subnet_ids
     security_groups  = [aws_security_group.svc_sg.id, var.db_security_group_id, var.bastion_security_group_id]
     assign_public_ip = true
   }

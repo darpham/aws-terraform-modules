@@ -20,7 +20,7 @@ locals {
 resource "aws_lb" "alb" {
   name               = "${local.name}-lb"
   load_balancer_type = "application"
-  subnets            = tolist(var.public_subnet_ids)
+  subnets            = var.public_subnet_ids
   security_groups    = [aws_security_group.alb.id]
   tags               = merge({ Name = local.name }, var.tags)
 }

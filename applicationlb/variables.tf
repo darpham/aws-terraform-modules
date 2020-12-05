@@ -29,4 +29,5 @@ variable task_name {
 
 variable public_subnet_ids {
   description = "Public Subnets for where the ALB will be associated with"
+  type = list(string)
 }

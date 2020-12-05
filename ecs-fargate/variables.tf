@@ -82,6 +82,7 @@ variable aws_ssm_db_password_arn {
 
 variable public_subnet_ids {
   description = "VPB Public Subnets for where to place Fargate tasks"
+  type = list(string)
 }
 
 variable db_security_group_id {

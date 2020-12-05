@@ -23,7 +23,7 @@ resource "aws_security_group" "db" {
     from_port   = 5432
     to_port     = 5432
     protocol    = "tcp"
-    cidr_blocks = tolist(var.private_subnet_cidrs)
+    cidr_blocks = var.private_subnet_cidrs
   }
 
   # allow ingress from bastion server
@@ -41,7 +41,7 @@ resource "aws_security_group" "db" {
     from_port   = 22
     to_port     = 65535
     protocol    = "tcp"
-    cidr_blocks = tolist(var.private_subnet_cidrs)
+    cidr_blocks = var.private_subnet_cidrs
   }
 }
 
@@ -90,7 +90,7 @@ module "db" {
   enabled_cloudwatch_logs_exports = ["postgresql", "upgrade"]
 
   # DB subnet group
-  subnet_ids = tolist(var.private_subnet_ids)
+  subnet_ids = var.private_subnet_ids
 
   # DB parameter group
   family = "postgres${var.db_major_version}"
