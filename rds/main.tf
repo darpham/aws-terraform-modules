@@ -1,7 +1,7 @@
-// provider "aws" {
-//   version = "2.64.0"
-//   region  = var.region
-// }
+provider "aws" {
+  version = "2.64.0"
+  region  = var.region
+}
 
 resource "aws_security_group" "db" {
   name_prefix = substr(var.db_name, 0, 6)

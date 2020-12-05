@@ -1,6 +1,6 @@
-// provider "aws" {
-//   version = "2.64.0"
-//   region  = var.region
+provider "aws" {
+  version = "2.64.0"
+  region  = var.region
 }
 
 module "bastion" {
