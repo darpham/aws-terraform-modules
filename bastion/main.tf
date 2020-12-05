@@ -20,7 +20,8 @@ module "bastion" {
   iam_instance_profile        = aws_iam_instance_profile.s3_readonly.name
   s3_bucket_name              = aws_s3_bucket.ssh_public_keys.id
   vpc_id                      = var.vpc_id
-  subnet_ids                  = tolist(var.public_subnet_ids)
+  // subnet_ids                  = tolist(var.public_subnet_ids)
+  subnet_ids                  = var.public_subnet_ids
   keys_update_frequency       = var.cron_key_update_schedule
   enable_hourly_cron_updates  = true
   apply_changes_immediately   = true
