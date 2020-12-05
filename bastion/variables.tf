@@ -13,6 +13,7 @@ variable vpc_id {
 
 variable public_subnet_ids {
   description = "public subnet ids for where to place bastion"
+  type = list(string)
 }
 
 variable bastion_name {
