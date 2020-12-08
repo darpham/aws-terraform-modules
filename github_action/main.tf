@@ -1,8 +1,9 @@
 resource "aws_iam_user" "gha_user" {
-  name = "github_action_tf"
+  name = "github-action"
 
   tags = { terraform_managed = "true" }
 }
+
 
 resource "aws_iam_access_key" "gha_keys" {
   user = aws_iam_user.gha_user.name
@@ -25,7 +26,7 @@ resource "aws_iam_user_policy" "gha_policy" {
                 "ecs:UpdateService",
                 "ecs:DescribeServices"
             ],
-            "Resource": "*"
+            "Resource": "$${wildcard}"
         }
     ]
 }
