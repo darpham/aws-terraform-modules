@@ -47,7 +47,7 @@ module "applicationlb" {
   // Input from other Modules
   vpc_id            = module.network.vpc_id
   public_subnet_ids = module.network.public_subnet_ids
-  acm_certificate_arn = module.r53.acm_certificate_arn
+  acm_certificate_arn = module.acm.acm_certificate_arn
 
   // Input from Variables
   account_id = var.account_id
@@ -94,12 +94,13 @@ module "ecs" {
 }
 
 module "r53" {
-  source = "./r53-https"
+  source = "./r53"
 
   // Input from other Modules
   alb_external_dns  = module.applicationlb.lb_dns_name
   alb_arn = module.applicationlb.lb_arn
   alb_target_group_arn = module.applicationlb.target_group_arn
+  acm_certificate_arn = module.acm.acm_certificate_arn
 
   // Input from Variables
   domain_name = var.domain_name
@@ -121,6 +122,13 @@ module "bastion" {
   bastion_instance_type    = var.bastion_instance_type
   cron_key_update_schedule = var.cron_key_update_schedule
   ssh_public_key_names     = var.ssh_public_key_names
+}
+
+module "acm" {
+  source = "./acm"
+
+  // Input from Variables
+  domain_name = var.domain_name
 }
 
 module "github_action" {

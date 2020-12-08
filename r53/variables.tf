@@ -17,3 +17,7 @@ variable alb_arn {
 variable alb_target_group_arn {
   description = "Application Load Balancer Target Group for forwarding HTTPS"
 }
+
+variable acm_certificate_arn {
+  description = "Certificate to use for HTTPS listener"
+}
