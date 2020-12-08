@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "ssh_public_keys" {
-  bucket        = var.bastion_name
+  bucket        = "${var.bastion_name}-keys"
   acl           = "private"
   force_destroy = true
 
@@ -20,7 +20,7 @@ resource "aws_s3_bucket" "ssh_public_keys" {
 				"s3:List*",
 				"s3:Get*"
 			],
-			"Resource": "arn:aws:s3:::${var.bastion_name}"
+			"Resource": "arn:aws:s3:::${var.bastion_name}-keys"
 		}
 	]
 }

@@ -5,14 +5,18 @@ variable account_id {
   description = "AWS Account ID"
 }
 
+variable project_name {
+  description = "The overall name of the project using this infrastructure; used to group related resources by"
+}
+
 variable region {
   type    = string
   default = "us-east-2"
 }
 
-variable stage {
+variable environment {
   type    = string
-  default = "dev"
+  // default = "dev"
 }
 
 variable vpc_id {

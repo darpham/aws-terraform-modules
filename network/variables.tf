@@ -1,24 +1,24 @@
-variable "region" {
+variable region {
   type = string
 }
 
-variable "availability_zones" {
+variable availability_zones {
   type = list(string)
 }
 
-variable "namespace" {
+variable namespace {
   type = string
 }
 
-variable "name" {
+variable name {
   type = string
 }
 
-variable "stage" {
+variable environment {
   type = string
 }
 
-variable "cidr_block" { type = string }
+variable cidr_block { type = string }
 
 variable tags {
   default = { terraform_managed = "true" }

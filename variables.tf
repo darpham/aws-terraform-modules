@@ -5,23 +5,34 @@ variable account_id {
   description = "AWS Account ID"
 }
 
+variable namespace {
+  description = "Namespace, which could be your organization name or abbreviation, e.g. 'eg' or 'cp'"
+  default = "hfla"
+}
+
 variable region {
   type    = string
-  default = "us-east-2"
 }
 
 variable project_name {
   description = "The overall name of the project using this infrastructure; used to group related resources by"
 }
 
-variable stage {
+variable environment {
   type    = string
-  default = "dev"
 }
 
 variable tags {
   default = { terraform_managed = "true" }
   type    = map
+}
+
+variable domain_name {
+  description = "The domain name where the application will be deployed, must already live in AWS"
+}
+
+variable host_name {
+  description = "The URL where the application will be hosted, must be a subdomain of the domain_name"
 }
 
 variable cidr_block {
@@ -32,10 +43,10 @@ variable cidr_block {
 variable availability_zones {
   description = "Available cidr blocks for public subnets."
   type        = list(string)
-  default     = [
-    "us-east-2a",
-    "us-east-2b"
-    ]
+  // default     = [
+  //   "us-east-2a",
+  //   "us-east-2b"
+  //   ]
 }
 
 // --------------------------
@@ -53,27 +64,12 @@ variable container_memory {
 
 variable container_port {
   type    = number
-  default = 5000
-}
-
-variable task_name {
-  type    = string
-  default = "foodoasis-task"
+  // default = 5000
 }
 
 variable health_check_path {
   type    = string
   default = "/health"
-}
-
-variable container_name {
-  default = "foodoasis-container"
-  type    = string
-}
-
-variable cluster_name {
-  default = "foodoasis-cluster"
-  type    = string
 }
 
 variable image_tag {
@@ -99,6 +95,10 @@ variable db_password {
   description = "Databse Password"
 }
 
+variable db_port {
+  description = "Databse Port"
+}
+
 // DB Migration Variables (Under construction)
 variable db_instance_id_migration {
   description = "The database ID from which the new database will start using the latest snapshot"
@@ -119,7 +119,6 @@ variable db_snapshot_migration {
 // Bastion Module Variables
 // --------------------------
 variable bastion_name {}
-// variable namespace {}
 
 variable bastion_instance_type {
   description = "The ec2 instance type of the bastion server"

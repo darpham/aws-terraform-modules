@@ -24,12 +24,13 @@ data "aws_iam_policy_document" "logs" {
     actions = [
       "ssm:Get*"
     ]
-    resources = ["arn:aws:ssm:${var.region}:${var.account_id}:parameter/${var.stage}/*"]
+    resources = ["arn:aws:ssm:${var.region}:${var.account_id}:parameter/${var.project_name}/${var.environment}/*"]
   }
 }
 
 resource "aws_iam_policy" "logs" {
-  name_prefix = substr(var.task_name, 0, 6)
+  // name_prefix = substr(var.task_name, 0, 6)
+  name        = "${var.project_name}-${var.environment}-task-cw-logs"
   description = "ecs logs permission"
   policy      = data.aws_iam_policy_document.logs.json
 }

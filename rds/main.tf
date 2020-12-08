@@ -13,7 +13,8 @@
 // }
 
 resource "aws_security_group" "db" {
-  name_prefix = substr(var.db_name, 0, 6)
+  // name_prefix = substr(var.db_name, 0, 6)
+  name_prefix = "${var.project_name}-${var.environment}-database"
   description = "Ingress and egress for ${var.db_name} RDS"
   vpc_id      = var.vpc_id
   tags        = merge({ Name = var.db_name }, var.tags)
@@ -45,7 +46,7 @@ resource "aws_security_group" "db" {
   }
 }
 
-// TODO: Add Conditional using var.db_migration_flag
+// TODO(1/2): Add Conditional using var.db_migration_flag
 // Pull latest existing snapshot for DB
 // data "aws_db_snapshot" "latest_db_snapshot" {
 //   db_instance_identifier = var.db_instance_id_migration
@@ -59,8 +60,10 @@ resource "aws_security_group" "db" {
 
 module "db" {
   source     = "terraform-aws-modules/rds/aws"
-  version    = "~> 2.0"
-  identifier = "${var.db_name}-${var.stage}"
+  // https://registry.terraform.io/modules/terraform-aws-modules/rds/aws/2.20.0
+  // version    = "~> 2.0"
+  version    = "~> 2.20.0"
+  identifier = "${var.db_name}-${var.environment}"
 
   allow_major_version_upgrade = var.db_allow_major_engine_version_upgrade
   engine                      = "postgres"
@@ -68,12 +71,15 @@ module "db" {
   instance_class              = var.db_instance_class
   allocated_storage           = 20
 
+  // parameter_group_name = "${var.project_name}-${var.environment}"
+  // option_group_name = "${var.project_name}-${var.environment}"
+
   name     = var.db_name
   username = var.db_username
   password = var.db_password
   port     = 5432
 
-  // TODO: Add Conditional using var.db_migration_flag
+  // TODO(2/2): Add Conditional using var.db_migration_flag
   // snapshot_identifier = data.aws_db_snapshot.latest_db_snapshot.id
   snapshot_identifier = var.db_snapshot_migration
 

@@ -1,5 +1,6 @@
 resource "aws_security_group" "svc_sg" {
-  name_prefix = "bn-loadbalancer"
+  // name_prefix = "bn-loadbalancer"
+  name = "${var.project_name}-${var.environment}-alb-sg"
   description = "inbound from load balancer to ecs service"
 
   vpc_id = var.vpc_id

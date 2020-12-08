@@ -9,7 +9,7 @@ variable vpc_id {
   description = "VPC ID"
 }
 
-variable stage {
+variable environment {
   description = "a short name describing the lifecyle or stage of development that this is running for; ex: 'dev', 'qa', 'prod', 'test'"
 }
 variable region {
@@ -49,12 +49,16 @@ variable db_password {
   description = "The postgres database password created for the default database when the instance is booted"
 }
 
+variable db_port {
+  description = "database port"
+}
+
 variable db_instance_class {
   description = "The instance type of the db; defaults to db.t2.small"
   default     = "db.t2.small"
 }
 variable db_engine_version {
-  description = "the semver major and minor version of postgres; default to 11.8"
+  description = "the database major and minor version of postgres; default to 11.8"
   default     = "11.8"
 }
 variable db_allow_major_engine_version_upgrade {

@@ -13,18 +13,22 @@
 // }
 
 data "template_file" "task_definition" {
-  template = file("templates/task-definition.json")
+  template = file("./ecs-fargate/templates/task-definition.json")
   vars     = {
+    account_id       = var.account_id
+    environment      = var.environment
+    project_name     = var.project_name
+    region           = var.region
+
+    cluster_name     = var.cluster_name
+    task_name        = var.task_name
     container_memory = var.container_memory
     container_cpu    = var.container_cpu
     container_port   = var.container_port
     container_name   = var.container_name
-    cluster_name     = var.cluster_name
-    task_name        = var.task_name
-    region           = var.region
 
     // TODO: Use remote Docker Image Repository
-    #image_tag       = var.image_tag
+    image       = "foodoasiscicd/backend:1ab74608"
 
     # Secrets injected securely from AWS SSM systems manager param store
     # https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html

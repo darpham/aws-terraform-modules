@@ -58,7 +58,6 @@ data "aws_ami" "ami" {
   }
 }
 
-
 resource "aws_eip" "eip" {
   vpc = true
 }
