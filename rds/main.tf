@@ -63,7 +63,7 @@ module "db" {
   // https://registry.terraform.io/modules/terraform-aws-modules/rds/aws/2.20.0
   // version    = "~> 2.0"
   version    = "~> 2.20.0"
-  identifier = "${var.db_name}-${var.environment}"
+  identifier = "${var.project_name}-${var.environment}"
 
   allow_major_version_upgrade = var.db_allow_major_engine_version_upgrade
   engine                      = "postgres"
