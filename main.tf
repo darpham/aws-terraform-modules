@@ -98,9 +98,6 @@ module "r53" {
 
   // Input from other Modules
   alb_external_dns  = module.applicationlb.lb_dns_name
-  alb_arn = module.applicationlb.lb_arn
-  alb_target_group_arn = module.applicationlb.target_group_arn
-  acm_certificate_arn = module.acm.acm_certificate_arn
 
   // Input from Variables
   domain_name = var.domain_name
