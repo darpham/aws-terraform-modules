@@ -4,7 +4,7 @@ data "aws_route53_zone" "selected" {
 }
 
 resource "aws_route53_record" "www" {
-  for_each = toSet(var.host_names)
+  for_each = toset(var.host_names)
 
   zone_id = data.aws_route53_zone.selected.zone_id
   name    = each.value
