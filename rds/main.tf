@@ -73,7 +73,7 @@ module "db" {
 
   db_subnet_group_name ="${var.project_name}-${var.environment}-subnet_group"
   parameter_group_name = "${var.project_name}-${var.environment}-param_group"
-  option_group_name = "${var.project_name}-${var.environment}-_option_group"
+  option_group_name = "${var.project_name}-${var.environment}-option_group"
 
   name     = var.db_name
   username = var.db_username
