@@ -129,6 +129,7 @@ module "acm" {
 
   // Input from Variables
   domain_name = var.domain_name
+  subject_alternative_names = [var.host_name]
 }
 
 module "github_action" {
