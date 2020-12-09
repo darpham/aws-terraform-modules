@@ -130,7 +130,12 @@ variable cron_key_update_schedule {
   description = "The cron schedule that public keys are synced from the bastion s3 bucket to the server; default to once every hour"
 }
 
-variable ssh_public_key_names {
-  description = "the name of the public key files in AWS S3 ./public_keys without the file extension; example ['alice', 'bob', 'carol']"
+// variable ssh_public_key_names {
+//   description = "the name of the public key files in AWS S3 ./public_keys without the file extension; example ['alice', 'bob', 'carol']"
+//   type        = list(string)
+// }
+
+variable github_usernames {
+  description = "the name github users that will be granted SSH access to the bastion; example ['alice', 'bob', 'carol']"
   type        = list(string)
 }

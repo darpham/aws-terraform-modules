@@ -105,7 +105,7 @@ module "r53" {
 }
 
 module "bastion" {
-  source = "./bastion"
+  source = "./bastion-gh"
 
   // Input from other Modules
   vpc_id            = module.network.vpc_id
@@ -118,7 +118,7 @@ module "bastion" {
   bastion_name             = "bastion-${var.project_name}-${var.environment}"
   bastion_instance_type    = var.bastion_instance_type
   cron_key_update_schedule = var.cron_key_update_schedule
-  ssh_public_key_names     = var.ssh_public_key_names
+  github_usernames     = var.github_usernames
 }
 
 module "acm" {

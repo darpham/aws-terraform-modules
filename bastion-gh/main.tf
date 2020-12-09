@@ -4,7 +4,8 @@ locals {
 }
 
 data "template_file" "user_data" {
-  template = file("${path.module}/user_data.sh")
+  // template = file("${path.module}/user_data.sh")
+  template = "${file("${path.module}/user_data.sh")}"
 
   vars = {
     // s3_bucket_name              = var.s3_bucket_name
@@ -17,16 +18,14 @@ data "template_file" "user_data" {
 }
 
 resource "aws_instance" "bastion" {
- ami                    = aws_ami.ami.id
- instance_type          = var.instance_type
+ ami                    = data.aws_ami.ami.id
+ instance_type          = var.bastion_instance_type
  subnet_id              = local.subnet_id
  vpc_security_group_ids = [aws_security_group.bastion.id]
- user_data              = "${template_file.user_data.rendered}"
+ user_data              = "${data.template_file.user_data.rendered}"
 
- count                  = 1
-
- tags {
-   Name = "${var.name}"
+ tags = {
+   Name = var.bastion_name
  }
 }
 

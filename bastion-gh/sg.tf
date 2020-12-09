@@ -1,10 +1,10 @@
 resource "aws_security_group" "bastion" {
-  name        = var.name
+  name        = var.bastion_name
   vpc_id      = var.vpc_id
   description = "Bastion security group (only SSH inbound access is allowed)"
 
   tags = {
-    Name = var.name
+    Name = var.bastion_name
   }
 }
 

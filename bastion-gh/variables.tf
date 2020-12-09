@@ -51,3 +51,23 @@ variable "allowed_security_groups" {
 variable "keys_update_frequency" {
   default = ""
 }
+
+variable "allowed_cidr" {
+  type = list(string)
+
+  default = [
+    "0.0.0.0/0",
+  ]
+
+  description = "A list of CIDR Networks to allow ssh access to."
+}
+
+variable "allowed_ipv6_cidr" {
+  type = list(string)
+
+  default = [
+    "::/0",
+  ]
+
+  description = "A list of IPv6 CIDR Networks to allow ssh access to."
+}

@@ -28,4 +28,4 @@ db_snapshot_migration        = "terraform-migration-1"
 
 // Bastion
 bastion_name         = "bastion"
-ssh_public_key_names = ["darren"]
+github_usernames = ["darpham"]
