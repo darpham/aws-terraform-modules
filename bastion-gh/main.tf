@@ -1,8 +1,3 @@
-provider "aws" {
-  version = "3.20.0"
-  region  = var.region
-}
-
 locals {
   // selects a randoms public subnet to create the bastion in
   subnet_id = element(var.public_subnet_ids, 1)
