@@ -4,8 +4,10 @@ data "aws_route53_zone" "selected" {
 }
 
 resource "aws_route53_record" "www" {
+  for_each = var.hostnames
+
   zone_id = data.aws_route53_zone.selected.zone_id
-  name    = var.host_name
+  name    = each.value
   type    = "CNAME"
   ttl     = "300"
   records = [var.alb_external_dns]

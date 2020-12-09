@@ -4,6 +4,7 @@ variable domain_name {
 
 variable host_name {
   description = "The URL where the application will be hosted, must be a subdomain of the domain_name"
+  type = list(string)
 }
 
 variable alb_external_dns {

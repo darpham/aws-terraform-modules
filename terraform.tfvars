@@ -7,7 +7,7 @@ region             = "us-east-2"
 availability_zones = ["us-east-2a", "us-east-2c" ]
 
 domain_name = "foodoasis.net"
-host_name = "aws-test.foodoasis.net"
+host_name = ["aws-test.foodoasis.net"]
 
 tags = { terraform_managed = "true" }
 
