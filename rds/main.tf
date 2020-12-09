@@ -77,7 +77,7 @@ module "db" {
   name     = var.db_name
   username = var.db_username
   password = var.db_password
-  port     = 5432
+  port     = var.db_port
 
   // TODO(2/2): Add Conditional using var.db_migration_flag
   // snapshot_identifier = data.aws_db_snapshot.latest_db_snapshot.id
