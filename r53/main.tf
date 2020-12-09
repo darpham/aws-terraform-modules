@@ -4,7 +4,7 @@ data "aws_route53_zone" "selected" {
 }
 
 resource "aws_route53_record" "www" {
-  for_each = var.hostnames
+  for_each = var.host_names
 
   zone_id = data.aws_route53_zone.selected.zone_id
   name    = each.value
