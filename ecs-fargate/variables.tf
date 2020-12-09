@@ -66,10 +66,10 @@ variable cluster_name {
   type    = string
 }
 
-variable image_tag {
-  description = "tag to be used for elastic container repositry image"
-  default = "latest"
-}
+// variable image_tag {
+//   description = "tag to be used for elastic container repositry image"
+//   default = "latest"
+// }
 
 variable desired_count {
   default = 1

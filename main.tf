@@ -88,7 +88,7 @@ module "ecs" {
   container_name   = local.container_name
   cluster_name     = local.cluster_name
   task_name        = local.task_name
-  image_tag        = var.image_tag
+  // image_tag        = var.image_tag
 
   depends_on = [ module.applicationlb ]
 }
