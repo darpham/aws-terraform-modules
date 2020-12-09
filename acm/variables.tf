@@ -4,4 +4,5 @@ variable domain_name {
 
 variable subject_alternative_names {
   description = "Additional subject_alternative_names to be added to the certificate"
+  type = list(string)
 }
