@@ -4,7 +4,7 @@ locals {
 }
 
 data "template_file" "user_data" {
-  template = file("${path.module}/${var.user_data_file}")
+  template = file("${path.module}/user_data.sh")
 
   vars = {
     // s3_bucket_name              = var.s3_bucket_name
