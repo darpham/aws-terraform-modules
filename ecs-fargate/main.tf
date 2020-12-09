@@ -13,7 +13,7 @@
 // }
 
 data "template_file" "task_definition" {
-  template = file("./templates/task-definition.json")
+  template = file("./ecs-fargate/templates/task-definition.json")
   vars     = {
     account_id       = var.account_id
     environment      = var.environment

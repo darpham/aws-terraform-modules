@@ -101,7 +101,7 @@ module "r53" {
 
   // Input from Variables
   domain_name = var.domain_name
-  host_name = var.host_name
+  host_names = var.host_names
 }
 
 module "bastion" {
