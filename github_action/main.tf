@@ -26,7 +26,7 @@ resource "aws_iam_user_policy" "gha_policy" {
                 "ecs:UpdateService",
                 "ecs:DescribeServices"
             ],
-            "Resource": "$${wildcard}"
+            "Resource": "*"
         }
     ]
 }
