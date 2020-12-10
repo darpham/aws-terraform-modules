@@ -26,9 +26,10 @@ pip install --upgrade awscli
 cat <<"EOF" > /home/${ssh_user}/update_ssh_authorized_keys.sh
 #!/usr/bin/env bash
 set -e
-BUCKET_NAME=${s3_bucket_name}
-BUCKET_URI=${s3_bucket_uri}
+# BUCKET_NAME=${s3_bucket_name}
+# BUCKET_URI=${s3_bucket_uri}
 SSH_USER=${ssh_user}
+echo $SSH_USER
 MARKER="# KEYS_BELOW_WILL_BE_UPDATED_BY_TERRAFORM"
 KEYS_FILE=/home/$SSH_USER/.ssh/authorized_keys
 TEMP_KEYS_FILE=$(mktemp /tmp/authorized_keys.XXXXXX)
@@ -41,8 +42,8 @@ grep -Fxq "$MARKER" $KEYS_FILE || echo -e "\n$MARKER" >> $KEYS_FILE
 line=$(grep -n "$MARKER" $KEYS_FILE | cut -d ":" -f 1)
 head -n $line $KEYS_FILE > $TEMP_KEYS_FILE
 # Synchronize the keys from the bucket.
-aws s3 sync --delete --exact-timestamps $BUCKET_URI $PUB_KEYS_DIR
-for filename in $PUB_KEYS_DIR/*; do
+# aws s3 sync --delete --exact-timestamps $BUCKET_URI $PUB_KEYS_DIR
+for user in $PUB_KEYS_DIR/*; do
     [ -f "$filename" ] || continue
     sed 's/\n\?$/\n/' < $filename >> $TEMP_KEYS_FILE
 done
@@ -83,4 +84,4 @@ if [ -n "$keys_update_frequency" ]; then
 fi
 
 # Append addition user-data script
-${additional_user_data_script}
+# ${additional_user_data_script}
